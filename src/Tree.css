@@ -1,0 +1,44 @@
+.Forest {
+  width: 30vw;
+  align-self: center;
+}
+
+.Tree {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--green);
+  user-select: none;
+}
+
+.Star {
+  color: var(--yellow);
+}
+
+.Bauble {
+  cursor: pointer;
+}
+
+.b0 {
+  color: var(--red);
+}
+
+.b1 {
+  color: var(--orange);
+}
+
+.b2 {
+  color: var(--yellow);
+}
+
+.b3 {
+  color: var(--blue);
+}
+
+.Trunk {
+  color: #613700;
+}
+
+.Pot {
+  color: var(--dgreen);
+}

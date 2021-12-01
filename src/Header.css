@@ -1,0 +1,19 @@
+.Header {
+  text-align: right;
+}
+
+.Header h1 {
+  font-size: 2.5rem;
+}
+
+.Header p {
+  font-size: 1rem;
+}
+
+.Header .url {
+  color: var(--green);
+}
+
+.Header .code {
+  color: var(--red);
+}
