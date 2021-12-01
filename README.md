@@ -7,3 +7,6 @@ It will eventually pull the leaderboard and show it alongside.
 
 ## Setting up
 You need npm installed. Add your leaderboard ID & signup code to .env.local, then `npm run build` to build the app. Copy the build folder to wherever you're hosting this thing and you're good to go 👍
+
+## Preview
+![Current output of app](preview.jpg)
