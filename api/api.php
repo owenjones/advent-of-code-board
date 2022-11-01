@@ -49,7 +49,7 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
     }
   }
   catch(ClientException $e) {
-    $cache["error"] = array("status" => 0, "message" => $e->getMessage());
+    $cache["error"] = array("status" => 500, "message" => $e->getMessage());
   }
 }
 
