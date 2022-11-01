@@ -33,18 +33,19 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
     $cache["status"] = 200;
     $cache["data"] = json_decode((string) $response->getBody());
     $cache["time"] = $now;
+
+    // manipulate data here to simplify displaying?
+    // some possible outputs:
+    // - array of people to total number of stars
+    // - for current day: ordered array of people completed
+    // - 'event log' - last things completed and by who
+
     file_put_contents($_ENV["CACHE"], json_encode($cache));
   } else {
     $cache["status"] = $response->getStatusCode();
     $cache["error"] = $response->getBody();
   }
 }
-
-// manipulate data here to simplify displaying?
-// some possible outputs:
-// - array of people to total number of stars
-// - for current day: ordered array of people completed
-// - 'event log' - last things completed and by who
 
 header("Content-Type: application/json");
 print(json_encode($cache));
