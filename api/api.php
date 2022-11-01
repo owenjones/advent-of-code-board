@@ -44,12 +44,15 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
 
       file_put_contents($_ENV["CACHE"], json_encode($cache));
     } else {
-      // if something went wrong: return old cached data (assuming it exists...) but also attach current error so it can eventually get picked up
-      $cache["error"] = array("status" => $response->getStatusCode(), "message" => $response->getBody());
+      // if we got an unexpected response: return old cached data (if it exists) but also attach current error so it can eventually get picked up
+      $cache["status"] = $response->getStatusCode();
+      $cache["error"] = $response->getBody();
     }
   }
   catch(ClientException $e) {
-    $cache["error"] = array("status" => 500, "message" => $e->getMessage());
+    // if the request failed: return old cached data (if it exists) but also attach current error so it can eventually get picked up
+    $cache["status"] = 500;
+    $cache["error"] = $e->getMessage();
   }
 }
 
