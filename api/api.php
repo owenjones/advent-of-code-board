@@ -40,5 +40,11 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
   }
 }
 
+// manipulate data here to simplify displaying?
+// some possible outputs:
+// - array of people to total number of stars
+// - for current day: ordered array of people completed
+// - 'event log' - last things completed and by who
+
 header("Content-Type: application/json");
 print(json_encode($cache));
