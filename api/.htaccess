@@ -1,0 +1,5 @@
+Deny From All
+
+<Files "api.php">
+Allow From All
+</Files>
