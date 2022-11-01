@@ -8,8 +8,9 @@ ob_start();
 require 'vendor/autoload.php';
 
 use \Dotenv\Dotenv;
-use \GuzzleHttp\Cookie\CookieJar;
 use \GuzzleHttp\Client;
+use \GuzzleHttp\Cookie\CookieJar;
+use \GuzzleHttp\Exception\ClientException;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -27,23 +28,28 @@ $hour = (int) date("H");
 if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) > 1800) && ($hour >= 8) && ($hour <= 18))) {
   $cookies = CookieJar::fromArray(['session' => $_ENV["SESSION"]], ".adventofcode.com");
   $client = new Client();
-  $response = $client->request("GET", $_ENV["API"], ["cookies" => $cookies]);
+  try {
+    $response = $client->request("GET", $_ENV["API"], ["cookies" => $cookies]);
 
-  if($response->getStatusCode() == 200) {
-    $cache["status"] = 200;
-    $cache["data"] = json_decode((string) $response->getBody());
-    $cache["time"] = $now;
+    if($response->getStatusCode() == 200) {
+      $cache["status"] = 200;
+      $cache["data"] = json_decode((string) $response->getBody());
+      $cache["time"] = $now;
 
-    // manipulate data here to simplify displaying?
-    // some possible outputs:
-    // - array of people to total number of stars
-    // - for current day: ordered array of people completed
-    // - 'event log' - last things completed and by who
+      // manipulate data here to simplify displaying?
+      // some possible outputs:
+      // - array of people to total number of stars
+      // - for current day: ordered array of people completed
+      // - 'event log' - last things completed and by who
 
-    file_put_contents($_ENV["CACHE"], json_encode($cache));
-  } else {
-    $cache["status"] = $response->getStatusCode();
-    $cache["error"] = $response->getBody();
+      file_put_contents($_ENV["CACHE"], json_encode($cache));
+    } else {
+      // if something went wrong: return old cached data (assuming it exists...) but also attach current error so it can eventually get picked up
+      $cache["error"] = array("status" => $response->getStatusCode(), "message" => $response->getBody());
+    }
+  }
+  catch(ClientException $e) {
+    $cache["error"] = array("status" => 0, "message" => $e->getMessage());
   }
 }
 
