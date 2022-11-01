@@ -37,6 +37,10 @@
   font-size: 1rem;
 }
 
+.Header small {
+  font-size: 0.75rem;
+}
+
 .Header .url {
   color: var(--green);
 }

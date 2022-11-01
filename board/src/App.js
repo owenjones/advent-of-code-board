@@ -1,26 +1,37 @@
 import Tree from './Tree'
-// import Leaderboard from './Leaderboard';
+import Leaderboard from './Leaderboard';
 import './App.css';
 
 function App() {
   var date = new Date();
-  var year = date.getFullYear();
   var month = date.getMonth() + 1;
+  var year = (month > 10) ? date.getFullYear() : (date.getFullYear() - 1);
 
-  if(process.env.REACT_APP_LEADERBOARD_CODE) {
-    var signup = <p><strong>Sign up at <span className="url">adventofcode.com</span> and join the leaderboard using code <span className="code">{ process.env.REACT_APP_LEADERBOARD_CODE }</span>!</strong></p>
-  } else {
-    var signup = <p>Find out more and practice on previous years events at <span className="url">adventofcode.com</span>!</p>;
-  }
+  var promostr = "An Advent calender of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like";
 
-  if(month < 12) {
+  if(month == 11) {
+    // don't plan on updating the display to promote current year's event until November, before that keep showing the previous year's leaderboard
     var promo = (
       <>
+        <p>{ promostr }</p>
         <h2>Starts 1<sup>st</sup> December</h2>
-        { signup }
       </>
     );
+  } else {
+    var promo = <p><small>{ promostr }</small></p>;
   }
+
+  if(process.env.REACT_APP_LEADERBOARD_CODE && month == 12) {
+    var leaderboard = <Leaderboard />;
+  }
+
+  if(process.env.REACT_APP_LEADERBOARD_CODE) {
+    var signupstr = <>Sign up at <span className="url">adventofcode.com</span> and join the leaderboard using code <span className="code">{ process.env.REACT_APP_LEADERBOARD_CODE }</span>!</>
+  } else {
+    var signupstr = <>Find out more and practice on previous year's events at <span className="url">adventofcode.com</span>!</>;
+  }
+
+  var signup = (<p><strong>{ signupstr }</strong></p>);
 
   return (
     <div className="App">
@@ -28,8 +39,9 @@ function App() {
       <div className="Body">
         <div className="Header">
           <h1>Advent of Code { year }</h1>
-          <p><small>An Advent calender of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like</small></p>
           { promo }
+          { leaderboard }
+          { signup }
         </div>
       </div>
     </div>
@@ -37,5 +49,3 @@ function App() {
 }
 
 export default App;
-
-//         <Leaderboard id="1565124" />
