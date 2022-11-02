@@ -26,7 +26,7 @@ $hour = (int) date("H");
 if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) > 1800) && ($hour >= 8) && ($hour <= 18))) {
   try {
     $month = (int) date("m");
-    $year = (string) ($month < 11 ? (((int) date("Y")) - 1) : date("Y"));
+    $year = (string) ($month < 11 ? (((int) date("Y")) - 1) : date("Y")); // switch to current year's event in November
     $url = "https://adventofcode.com/" . $year . "/leaderboard/private/view/" . $_ENV["OWNER_ID"] . ".json";
 
     $cookies = CookieJar::fromArray(['session' => $_ENV["SESSION"]], ".adventofcode.com");
