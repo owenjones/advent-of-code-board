@@ -42,6 +42,9 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
       }
       arsort($members);
 
+      // While treversing all members make a note of star completion timestamps (and which day/star)
+      // sort these descending and filter the top N to make a 'Recent Activity' log.
+
       $cache = array();
       $cache["status"] = 200;
       $cache["time"] = $now;
