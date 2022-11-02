@@ -34,18 +34,18 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
     $response = $client->request("GET", $url, ["cookies" => $cookies]);
 
     if($response->getStatusCode() == 200) {
-      $data = json_decode((string) $response->getBody());
+      $data = json_decode((string) $response->getBody(), TRUE);
 
-      // manipulate data here to simplify displaying?
-      // some possible outputs:
-      // - array of people to total number of stars
-      // - for current day: ordered array of people completed
-      // - 'event log' - last things completed and by who
+      $members = array();
+      foreach ($data["members"] as $id => $member) {
+        $members[$member["name"]] = $member["stars"];
+      }
+      arsort($members);
 
       $cache = array();
-      $cache["data"] = $data; // for now - pass entire data structure through
       $cache["status"] = 200;
       $cache["time"] = $now;
+      $cache["members"] = $members;
       file_put_contents($_ENV["CACHE"], json_encode($cache));
     } else {
       // if we got an unexpected response: return old cached data (if it exists) but also attach current error so it can eventually get picked up
