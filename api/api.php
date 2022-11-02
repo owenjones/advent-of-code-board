@@ -24,12 +24,13 @@ $hour = (int) date("H");
 
 // only update from AOC if: we haven't before, or we have and it was more than 30 mins ago (and it's between 8am and 6pm)
 if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) > 1800) && ($hour >= 8) && ($hour <= 18))) {
-  $cookies = CookieJar::fromArray(['session' => $_ENV["SESSION"]], ".adventofcode.com");
-  $client = new Client();
   try {
     $month = (int) date("m");
     $year = (string) ($month < 11 ? (((int) date("Y")) - 1) : date("Y"));
     $url = "https://adventofcode.com/" . $year . "/leaderboard/private/view/" . $_ENV["OWNER_ID"] . ".json";
+
+    $cookies = CookieJar::fromArray(['session' => $_ENV["SESSION"]], ".adventofcode.com");
+    $client = new Client();
     $response = $client->request("GET", $url, ["cookies" => $cookies]);
 
     if($response->getStatusCode() == 200) {
