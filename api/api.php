@@ -9,6 +9,7 @@ use \Dotenv\Dotenv;
 use \GuzzleHttp\Client;
 use \GuzzleHttp\Cookie\CookieJar;
 use \GuzzleHttp\Exception\ClientException;
+use \Ds\Vector;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -36,11 +37,13 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
     if($response->getStatusCode() == 200) {
       $data = json_decode((string) $response->getBody(), TRUE);
 
-      $members = array();
+      $members = new Vector();
       foreach ($data["members"] as $id => $member) {
-        $members[$member["name"]] = $member["stars"];
+        $members->push(array("name" => $member["name"], "stars" => $member["stars"]));
       }
-      arsort($members);
+      $members->sort(function($a, $b) {
+        return $a["stars"] <=> $b["stars"];
+      });
 
       // While treversing all members make a note of star completion timestamps (and which day/star)
       // sort these descending and filter the top N to make a 'Recent Activity' log.

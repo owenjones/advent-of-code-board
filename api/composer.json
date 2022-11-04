@@ -2,6 +2,7 @@
     "require": {
         "php": ">=7.4",
         "guzzlehttp/guzzle": "^7.0",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "php-ds/php-ds": "^1.4"
     }
 }
