@@ -21,10 +21,6 @@ function App() {
     var promo = <p><small>{ promostr }</small></p>;
   }
 
-  if(process.env.REACT_APP_LEADERBOARD_CODE && month == 12) {
-    var leaderboard = <Leaderboard />;
-  }
-
   if(process.env.REACT_APP_LEADERBOARD_CODE) {
     var signupstr = <>Sign up at <span className="url">adventofcode.com</span> and join the leaderboard using code <span className="code">{ process.env.REACT_APP_LEADERBOARD_CODE }</span>!</>
   } else {
@@ -40,7 +36,7 @@ function App() {
         <div className="Header">
           <h1>Advent of Code { year }</h1>
           { promo }
-          { leaderboard }
+          <Leaderboard />
           { signup }
         </div>
       </div>
