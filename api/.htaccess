@@ -2,4 +2,5 @@ Deny From All
 
 <Files "api.php">
 Allow From All
+Header set Access-Control-Allow-Origin "*"
 </Files>
