@@ -1,6 +1,6 @@
 .Leaderboard p {
-  text-align: right;
-  margin-top: 4rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   font-style: italic;
   font-weight: 300;
 }

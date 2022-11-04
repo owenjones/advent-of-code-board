@@ -4,13 +4,13 @@ import './App.css';
 
 function App() {
   var date = new Date();
-  var month = date.getMonth() + 1;
+  //var month = date.getMonth() + 1;
+  var month = 12;
   var year = (month > 10) ? date.getFullYear() : (date.getFullYear() - 1);
 
   var promostr = "An Advent calender of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like";
 
   if(month == 11) {
-    // don't plan on updating the display to promote current year's event until November, before that keep showing the previous year's leaderboard
     var promo = (
       <>
         <p>{ promostr }</p>
@@ -19,6 +19,10 @@ function App() {
     );
   } else {
     var promo = <p><small>{ promostr }</small></p>;
+  }
+
+  if(month == 12) {
+    var leaderboard = <Leaderboard />;
   }
 
   if(process.env.REACT_APP_LEADERBOARD_CODE) {
@@ -36,7 +40,7 @@ function App() {
         <div className="Header">
           <h1>Advent of Code { year }</h1>
           { promo }
-          <Leaderboard />
+          { leaderboard }
           { signup }
         </div>
       </div>

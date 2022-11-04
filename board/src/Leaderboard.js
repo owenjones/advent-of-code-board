@@ -20,28 +20,20 @@ class Leaderboard extends React.Component {
     clearInterval(this.timer);
   }
 
-  geturl() {
-    return `https://adventofcode.com/2021/leaderboard/private/view/${this.state.id}.json`;
-  }
-
   async fetchboard() {
-    var url = this.geturl();
-    var options = {
-      credentials: 'include',
-      mode: 'no-cors'
-    };
+    var url = process.env.REACT_APP_LEADERBOARD_API_URL;
 
     console.log(`Fetching ${url}`);
-    var response = await fetch(url, options);
+    var response = await fetch(url);
 
     if(response.ok) {
-      var data = await response.text();
-      var json = response.json();
+      var data = await response.json();
+      console.log(data);
 
       this.setState({
         show: true,
-        members: json.members,
-        member_count: json.members.length
+        members: data.members,
+        member_count: data.members.length
       });
 
       console.log("Updated leaderboard")
@@ -60,7 +52,11 @@ class Leaderboard extends React.Component {
   render() {
     if(this.state.show) {
       var plural = (this.state.member_count > 1) ? "people are" : "person is";
-      return <div className="Leaderboard"><p>{this.state.member_count} ${plural} on the leaderboard, stats will be shown once more people join!</p></div>;
+      return (
+        <div className="Leaderboard">
+          <p>{this.state.member_count} {plural} on the leaderboard, stats will be shown once more people join!</p>
+        </div>
+      );
     }
 
     return "";
