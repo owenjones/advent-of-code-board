@@ -46,12 +46,12 @@ class Leaderboard extends React.Component {
       console.log(`Updating leaderboard failed (${response.status}).. data returned: ${data}`);
     }
 
-    // this.timer = setInterval(this.fetchboard(), (60 * 60 * 1000));
+    this.timer = setInterval(this.fetchboard(), (15 * 60 * 1000));
   }
 
   render() {
     if(this.state.show) {
-      var plural = (this.state.member_count > 1) ? "people are" : "person is";
+      var plural = (this.state.member_count != 1) ? "people are" : "person is";
       return (
         <div className="Leaderboard">
           <p>{this.state.member_count} {plural} on the leaderboard, stats will be shown once more people join!</p>
