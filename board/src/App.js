@@ -17,7 +17,7 @@ function App() {
       </>
     );
   } else {
-    var promo = <p><small>{ promostr }</small></p>;
+    var promo = <p>{ promostr }</p>;
   }
 
   if(month == 12) {
@@ -39,8 +39,8 @@ function App() {
         <div className="Header">
           <h1>Advent of Code { year }</h1>
           { promo }
-          { leaderboard }
           { signup }
+          { leaderboard }
         </div>
       </div>
     </div>
