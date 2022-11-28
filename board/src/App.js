@@ -4,13 +4,12 @@ import './App.css';
 
 function App() {
   var date = new Date();
-  //var month = date.getMonth() + 1;
-  var month = 12;
+  var month = date.getMonth() + 1;
   var year = (month > 10) ? date.getFullYear() : (date.getFullYear() - 1);
 
   var promostr = "An Advent calender of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like";
 
-  if(month == 11) {
+  if(month < 12) {
     var promo = (
       <>
         <p>{ promostr }</p>
