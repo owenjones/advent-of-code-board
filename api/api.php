@@ -38,7 +38,7 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
       $data = json_decode((string) $response->getBody(), TRUE);
 
       if($data == NULL) {
-        $cache["status"] = 500;
+        $cache["status"] = 403;
         $cache["error"] = "Empty response, check session cookie is valid";
       } else {
         $members = new Vector();
