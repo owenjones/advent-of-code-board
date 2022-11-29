@@ -7,7 +7,6 @@ class Leaderboard extends React.Component {
     super(props);
     this.state = {
       id: props.id,
-      show: false,
       members: [],
       member_count: 0,
       error: false,
@@ -30,29 +29,25 @@ class Leaderboard extends React.Component {
         var data = await response.json();
         console.log(data);
 
+        if(data.status != 200) {
+          var error = data.error;
+          console.error(error);
+        } else {
+          var error = false;
+        }
+
         this.setState({
-          show: true,
+          error: error,
           members: data.members,
           member_count: data.members.length,
         });
 
         console.log("Updated leaderboard")
-
-        if(data.status != 200) {
-          this.setState({
-            error: data.error
-          })
-        } else {
-          this.setState({
-            error: false
-          })
-        }
       }
       catch(e) {
         var error = `Updating leaderboard failed: ${ e }`;
 
         this.setState({
-          show: false,
           error: error
         });
 
@@ -63,7 +58,6 @@ class Leaderboard extends React.Component {
       var error = `Updating leaderboard failed (${ response.status })`;
 
       this.setState({
-        show: false,
         error: error
       });
 
@@ -72,19 +66,19 @@ class Leaderboard extends React.Component {
   }
 
   render() {
-    if(this.state.show) {
-      var plural = (this.state.member_count != 1) ? "people are" : "person is";
-      var leaderboard = (
-        <div className="Leaderboard">
-          <p>{ this.state.member_count } { plural } on the leaderboard, stats will be shown once more people join!</p>
-        </div>
-      );
-    }
+    var plural = (this.state.member_count != 1) ? "people are" : "person is";
+    var leaderboard = (
+      <div className="Leaderboard">
+        <p>{ this.state.member_count } { plural } on the leaderboard, stats will be shown once more people join!</p>
+      </div>
+    );
 
     if(this.state.error) {
       var error = (
-        <div className="LeaderboardError" data-tip={ this.state.error }>!</div>
-        <ReactTooltip effect="solid" event="click" />
+        <>
+          <div className="LeaderboardError" data-tip={ this.state.error }>!</div>
+          <ReactTooltip effect="solid" event="click" />
+        </>
       );
     }
 
