@@ -15,7 +15,7 @@ class Leaderboard extends React.Component {
 
   componentDidMount() {
     this.fetchboard();
-    setInterval(() => { this.fetchboard() }, (60 * 1000)); // call API every minute
+    setInterval(() => { this.fetchboard() }, (5 * 60 * 1000)); // call API every five minutes
   }
 
   async fetchboard() {
