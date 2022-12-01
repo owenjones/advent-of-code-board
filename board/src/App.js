@@ -40,8 +40,8 @@ function App() {
           <h1>Advent of Code { year }</h1>
           { promo }
           { signup }
-          { leaderboard }
         </div>
+        { leaderboard }
       </div>
     </div>
   );
