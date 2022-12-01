@@ -1,6 +1,16 @@
 .Leaderboard p {
-  margin-top: 3rem;
+  font-size: 0.65rem;
   font-weight: 300;
+  column-width: 30%;
+  column-count: 3;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.Leaderboard .stars {
+  font-weight: 500;
+  color: var(--yellow);
 }
 
 .LeaderboardError {

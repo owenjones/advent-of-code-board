@@ -66,10 +66,9 @@ class Leaderboard extends React.Component {
   }
 
   render() {
-    var plural = (this.state.member_count != 1) ? "people are" : "person is";
     var leaderboard = (
       <div className="Leaderboard">
-        <p>{ this.state.member_count } { plural } on the leaderboard, stats will be shown once more people join!</p>
+        { this.state.members.map(m => (<p>{ m.name }: <span className="stars">{ m.stars }*</span></p>)) }
       </div>
     );
 
