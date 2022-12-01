@@ -46,7 +46,7 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
           $members->push(array("name" => $member["name"], "stars" => $member["stars"]));
         }
         $members->sort(function($a, $b) {
-          return $a["stars"] <=> $b["stars"];
+          return $b["stars"] <=> $a["stars"];
         });
 
         // FUTURE: While treversing all members make a note of star completion timestamps (and which day/star)
