@@ -65,10 +65,15 @@ class Leaderboard extends React.Component {
     }
   }
 
+  row(member) {
+    var name = member.name ? member.name : <i>anonymous user</i>;
+    return <p>{ name }: <span className="stars">{ member.stars }*</span></p>
+  }
+
   render() {
     var leaderboard = (
       <div className="Leaderboard">
-        { this.state.members.map(m => (<p>{ m.name }: <span className="stars">{ m.stars }*</span></p>)) }
+        { this.state.members.map(m => this.row(m)) }
       </div>
     );
 
