@@ -73,7 +73,9 @@ class Leaderboard extends React.Component {
   render() {
     var leaderboard = (
       <div className="Leaderboard">
-        { this.state.members.map(m => this.row(m)) }
+        <div className="inner">
+          { this.state.members.map(m => this.row(m)) }
+        </div>
       </div>
     );
 
