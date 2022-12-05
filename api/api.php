@@ -44,19 +44,12 @@ if(!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time']) 
         $members = new Vector();
 
         foreach ($data["members"] as $id => $member) {
-          $members->push(array("name" => $member["name"], "stars" => $member["stars"], "last" => $member["last_star_ts"]));
+          $members->push(array("name" => $member["name"], "stars" => $member["stars"], "score" => $member["local_score"]));
         }
 
-        // sort by both total number of stars, and by timestamp of last completed star
-        // => end result is most completed stars first, with any members with equal stars ordered by
-        // who got their stars first
+        // sort by Advent of Code score
         $members->sort(function($a, $b) {
-          if($a["stars"] == $b["stars"]) {
-            return $a["last"] <=> $b["last"];
-          } else {
-            return $b["stars"] <=> $a["stars"];
-          }
-
+          return $b["score"] <=> $a["score"];
         });
 
         // FUTURE: While treversing all members make a note of star completion timestamps (and which day/star)
