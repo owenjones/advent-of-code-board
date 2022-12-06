@@ -67,7 +67,7 @@ class Leaderboard extends React.Component {
 
   row(member) {
     var name = member.name ? member.name : <i>anonymous user</i>;
-    return <p>{ name }: <span className="stars">{ member.stars }*</span></p>
+    return <p>{ name }: { member.score } - <span className="stars">{ member.stars }*</span></p>
   }
 
   render() {
