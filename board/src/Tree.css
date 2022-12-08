@@ -13,6 +13,17 @@
 
 .Star {
   color: var(--yellow);
+  animation: 1.5s ease-in-out 0.75s infinite alternate glow;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 30px var(--yellow);
+  }
+
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 8px var(--yellow), 0 0 15px var(--yellow), 0 0 20px var(--yellow), 0 0 30px var(--yellow);
+  }
 }
 
 .Bauble {
@@ -21,18 +32,32 @@
 
 .b0 {
   color: var(--red);
+  text-shadow: 0 0 5px var(--red), 0 0 8px var(--red);
 }
 
 .b1 {
   color: var(--orange);
+  text-shadow: 0 0 5px var(--orange), 0 0 8px var(--orange);
 }
 
 .b2 {
   color: var(--yellow);
+  text-shadow: 0 0 5px var(--yellow), 0 0 8px var(--yellow);
 }
 
 .b3 {
   color: var(--blue);
+  text-shadow: 0 0 5px var(--blue), 0 0 8px var(--blue);
+}
+
+.b4 {
+  color: var(--pink);
+  text-shadow: 0 0 5px var(--pink), 0 0 8px var(--pink);
+}
+
+.b5 {
+  color: var(--turquoise);
+  text-shadow: 0 0 5px var(--turquoise), 0 0 8px var(--turquoise);
 }
 
 .Trunk {

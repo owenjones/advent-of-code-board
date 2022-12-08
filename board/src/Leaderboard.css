@@ -22,6 +22,7 @@
 .Leaderboard .stars {
   font-weight: 700;
   color: var(--yellow);
+  text-shadow: 0 0 2px var(--yellow);
 }
 
 .LeaderboardError {

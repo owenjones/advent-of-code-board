@@ -4,7 +4,7 @@ import './Tree.css';
 class Bauble extends React.Component {
   constructor() {
     super();
-    this.start = Math.floor(Math.random() * 4);
+    this.start = Math.floor(Math.random() * 6);
     this.state = {clicks: 0};
     this.nextColour = this.nextColour.bind(this);
     this.setColour()
@@ -17,7 +17,7 @@ class Bauble extends React.Component {
   }
 
   setColour(skip = 0) {
-    var colour = (this.start + skip) % 5;
+    var colour = (this.start + skip) % 6;
     this.classes = `Bauble b${colour}`;
   }
 
