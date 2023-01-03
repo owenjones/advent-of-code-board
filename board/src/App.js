@@ -9,7 +9,7 @@ function App() {
 
   var promostr = "An Advent calender of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like";
 
-  if(month < 12) {
+  if(month > 1 && month < 12) {
     var promo = (
       <>
         <p>{ promostr }</p>
@@ -20,7 +20,7 @@ function App() {
     var promo = <p>{ promostr }</p>;
   }
 
-  if(month == 12) {
+  if(month == 1 || month == 12) {
     var leaderboard = <Leaderboard />;
   }
 
