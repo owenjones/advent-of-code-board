@@ -80,6 +80,5 @@ if (!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time'])
   }
 }
 
-header('Access-Control-Allow-Origin: *');
 header("Content-Type: application/json");
 print(json_encode($cache));
