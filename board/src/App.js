@@ -25,7 +25,7 @@ function App() {
   }
 
   if (process.env.REACT_APP_LEADERBOARD_CODE) {
-    var signupstr = <>Sign up at <span className="url">adventofcode.com</span> and join the leaderboard using code <span className="code">{process.env.REACT_APP_LEADERBOARD_CODE}</span>!</>
+    var signupstr = <>Sign up at <span className="url">adventofcode.com</span> and join the leaderboard<br />using code <span className="code">{process.env.REACT_APP_LEADERBOARD_CODE}</span>!</>
   } else {
     var signupstr = <>Find out more and practice on previous year's events at <span className="url">adventofcode.com</span>!</>;
   }
