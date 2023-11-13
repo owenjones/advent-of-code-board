@@ -40,6 +40,7 @@ if (!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time'])
       if ($data == NULL) {
         $cache["status"] = 403;
         $cache["error"] = "Empty response, check session cookie is valid";
+        $cache["members"] = [];
       } else {
         $members = new Vector();
 
@@ -79,5 +80,6 @@ if (!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time'])
   }
 }
 
+header('Access-Control-Allow-Origin: *');
 header("Content-Type: application/json");
 print(json_encode($cache));
