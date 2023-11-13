@@ -9,39 +9,39 @@ function App() {
 
   var promostr = "An Advent calender of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like";
 
-  if(month > 1 && month < 12) {
+  if (month > 1 && month < 12) {
     var promo = (
       <>
-        <p>{ promostr }</p>
+        <p>{promostr}</p>
         <h2>Starts 1<sup>st</sup> December</h2>
       </>
     );
   } else {
-    var promo = <p>{ promostr }</p>;
+    var promo = <p>{promostr}</p>;
   }
 
-  if(month == 1 || month == 12) {
+  if (month == 1 || month == 12) {
     var leaderboard = <Leaderboard />;
   }
 
-  if(process.env.REACT_APP_LEADERBOARD_CODE) {
-    var signupstr = <>Sign up at <span className="url">adventofcode.com</span> and join the leaderboard using code <span className="code">{ process.env.REACT_APP_LEADERBOARD_CODE }</span>!</>
+  if (process.env.REACT_APP_LEADERBOARD_CODE) {
+    var signupstr = <>Sign up at <span className="url">adventofcode.com</span> and join the leaderboard using code <span className="code">{process.env.REACT_APP_LEADERBOARD_CODE}</span>!</>
   } else {
     var signupstr = <>Find out more and practice on previous year's events at <span className="url">adventofcode.com</span>!</>;
   }
 
-  var signup = (<p><strong>{ signupstr }</strong></p>);
+  var signup = (<p><strong>{signupstr}</strong></p>);
 
   return (
     <div className="App">
       <Tree />
       <div className="Body">
         <div className="Header">
-          <h1>Advent of Code { year }</h1>
-          { promo }
-          { signup }
+          <h1>Advent of Code {year}</h1>
+          {promo}
+          {signup}
         </div>
-        { leaderboard }
+        {leaderboard}
       </div>
     </div>
   );

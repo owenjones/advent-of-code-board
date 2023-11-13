@@ -5,13 +5,13 @@ class Bauble extends React.Component {
   constructor() {
     super();
     this.start = Math.floor(Math.random() * 6);
-    this.state = {clicks: 0};
+    this.state = { clicks: 0 };
     this.nextColour = this.nextColour.bind(this);
     this.setColour()
   }
 
   render() {
-    return(
+    return (
       <span className={this.classes} onClick={this.nextColour}>()</span>
     );
   }
@@ -24,7 +24,7 @@ class Bauble extends React.Component {
   nextColour() {
     var clicks = this.state.clicks + 1;
     this.setColour(clicks);
-    this.setState({clicks: clicks});
+    this.setState({ clicks: clicks });
   }
 }
 
@@ -40,7 +40,7 @@ class Magic extends React.Component {
 
 function Star() {
   return (
-  <span className="Star">{`/\\
+    <span className="Star">{`/\\
 <  >
 \\/`}</span>
   );
@@ -48,7 +48,7 @@ function Star() {
 
 function Trunk() {
   return (
-  <span className="Trunk">{`|   |`}</span>
+    <span className="Trunk">{`|   |`}</span>
   );
 }
 
@@ -62,7 +62,7 @@ function Pot() {
 
 function Tree() {
   // yes, I know it's very ugly, don't judge...
-  return(
+  return (
     <div className="Forest">
       <div className="Tree">
         <pre><Star />{`
