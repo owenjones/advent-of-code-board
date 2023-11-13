@@ -24,12 +24,12 @@ class Leaderboard extends React.Component {
     console.log(`Fetching ${url}`);
     var response = await fetch(url);
 
-    if(response.ok) {
+    if (response.ok) {
       try {
         var data = await response.json();
         console.log(data);
 
-        if(data.status != 200) {
+        if (data.status != 200) {
           var error = data.error;
           console.error(error);
         } else {
@@ -44,8 +44,8 @@ class Leaderboard extends React.Component {
 
         console.log("Updated leaderboard")
       }
-      catch(e) {
-        var error = `Updating leaderboard failed: ${ e }`;
+      catch (e) {
+        var error = `Updating leaderboard failed: ${e}`;
 
         this.setState({
           error: error
@@ -55,7 +55,7 @@ class Leaderboard extends React.Component {
       }
     }
     else {
-      var error = `Updating leaderboard failed (${ response.status })`;
+      var error = `Updating leaderboard failed (${response.status})`;
 
       this.setState({
         error: error
@@ -67,22 +67,22 @@ class Leaderboard extends React.Component {
 
   row(member) {
     var name = member.name ? member.name : <i>anonymous user</i>;
-    return <p>{ name }: <span className="stars">{ member.stars }*</span> ({ member.score })</p>
+    return <p>{name}: <span className="stars">{member.stars}*</span> ({member.score})</p>
   }
 
   render() {
     var leaderboard = (
       <div className="Leaderboard">
         <div className="inner">
-          { this.state.members.map(m => this.row(m)) }
+          {this.state.members.map(m => this.row(m))}
         </div>
       </div>
     );
 
-    if(this.state.error) {
+    if (this.state.error) {
       var error = (
         <>
-          <div className="LeaderboardError" data-tip={ this.state.error }>!</div>
+          <div className="LeaderboardError" data-tip={this.state.error}>!</div>
           <ReactTooltip effect="solid" event="click" />
         </>
       );
@@ -90,8 +90,8 @@ class Leaderboard extends React.Component {
 
     return (
       <>
-        { leaderboard }
-        { error }
+        {leaderboard}
+        {error}
       </>
     )
   }
