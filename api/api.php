@@ -39,8 +39,7 @@ if (!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time'])
 
       if ($data == NULL) {
         $cache["status"] = 403;
-        $cache["error"] = "Empty response, check session cookie is valid";
-        $cache["members"] = [];
+        $cache["error"] = "Leaderboard JSON empty response, check session cookie is valid";
       } else {
         $members = new Vector();
 
@@ -67,18 +66,20 @@ if (!isset($cache['time']) || (isset($cache['time']) && (($now - $cache['time'])
       }
 
       $cache["time"] = $now;
+      if(!isset($cache["members"])) $cache["members"] = array();
       file_put_contents($_ENV["CACHE"], json_encode($cache));
     } else {
       // if we got an unexpected response: return old cached data (if it exists) but also attach current error so it can eventually get picked up
       $cache["status"] = $response->getStatusCode();
       $cache["error"] = $response->getBody();
     }
-  } catch (ClientException $e) {
+  } catch (Exception $e) {
     // if the request failed: return old cached data (if it exists) but also attach current error so it can eventually get picked up
     $cache["status"] = 500;
     $cache["error"] = $e->getMessage();
   }
 }
 
+header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 print(json_encode($cache));
