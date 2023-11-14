@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import "./Leaderboard.css";
 
 class Leaderboard extends React.Component {
@@ -71,19 +71,21 @@ class Leaderboard extends React.Component {
   }
 
   render() {
-    var leaderboard = (
-      <div className="Leaderboard">
-        <div className="inner">
-          {this.state.members.map(m => this.row(m))}
+    if (this.state.members.length > 0) {
+      var leaderboard = (
+        <div className="Leaderboard">
+          <div className="inner">
+            {this.state.members.map(m => this.row(m))}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
 
     if (this.state.error) {
       var error = (
         <>
-          <div className="LeaderboardError" data-tip={this.state.error}>!</div>
-          <ReactTooltip effect="solid" event="click" />
+          <div className="LeaderboardError" data-tooltip-id="error-tooltip" data-tooltip-content={this.state.error}>!</div>
+          <Tooltip id="error-tooltip" effect="solid" event="click" />
         </>
       );
     }
