@@ -13,7 +13,7 @@ function App() {
 
   var year = (month > 10) ? date.getFullYear() : (date.getFullYear() - 1);
 
-  var promostr = "An Advent calender of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like";
+  var promostr = "Twelve days of programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like";
 
   if (month == 11) {
     var promo = (
